@@ -1,3 +1,36 @@
 #!/usr/bin/bash
 
-echo "Hi Victor!"
+echo "========="
+echo "START/STOP WEB APP SCRIPT"
+echo "========="
+
+echo "Provide SubscriptionID:"
+read -r subscription_id
+
+echo "Provide Resource Group:"
+read -r resource_group
+
+echo "Provide Web App name:"
+read -r web_app_name
+
+echo "========="
+echo "AUTHENTICATION PROCESS REQUIRED."
+az login
+
+az account set --subscription $subscription_id
+echo "========="
+
+echo "$web_app_name  STATE:"
+az webapp show --name $web_app_name --resource-group $resource_group --query state
+echo "========="
+
+az webapp start --name $web_app_name --resource-group $resource_group
+
+echo "ACTION : (start/stop)"
+read -r action
+
+if [ $action == "start" ];then 
+   az webapp start --name $web_app_name --resource-group $resource_group
+elif [ $action == "stop" ];then
+   az webapp stop --name $web_app_name --resource-group $resource_group
+fi
