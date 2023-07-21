@@ -1,32 +1,37 @@
 #!/usr/bin/bash
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+#to apply colors we  need to escape  so we add the argument -e  REMINDER TO MYSELF MOSTLY BECAUSE I FORGOT
+
 echo "========="
-echo "START/STOP WEB APP SCRIPT"
+echo -e "${RED} START/STOP WEB APP SCRIPT ${NC}"
 echo "========="
 
-echo "Provide SubscriptionID:"
+echo -e "${GREEN} Provide SubscriptionID:${NC}"
 read -r subscription_id
 
-echo "Provide Resource Group:"
-read -r resource_group
+echo -e "${GREEN} Provide Resource Group:${NC}"
+read -r resource_group 
 
-echo "Provide Web App name:"
+echo -e "${GREEN} Provide Web App name:${NC}"
 read -r web_app_name
 
 echo "========="
-echo "AUTHENTICATION PROCESS REQUIRED."
+echo -e "${RED} AUTHENTICATION PROCESS REQUIRED. ${NC} "
 az login
 
 az account set --subscription $subscription_id
 echo "========="
 
-echo "$web_app_name  STATE:"
+echo -e "${GREEN} $web_app_name  STATE: ${NC}"
 az webapp show --name $web_app_name --resource-group $resource_group --query state
 echo "========="
 
 az webapp start --name $web_app_name --resource-group $resource_group
 
-echo "ACTION : (start/stop)"
+echo -e "${GREEN} ACTION : (start/stop) ${NC}"
 read -r action
 
 if [ $action == "start" ];then 
