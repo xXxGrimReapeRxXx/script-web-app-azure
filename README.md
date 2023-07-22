@@ -5,6 +5,7 @@
 
 - [About](#about)
 - [Areas to Improve](#areas-to-improve)
+- [Usefull Documentation](#documentation)
 
 ---
 
@@ -18,3 +19,7 @@ This script is for starting and stopping web applications in Azure. It provides 
 
 - Security: ensure that the typed values can not be visible over the screen
 ---
+## Usefull Documentation
+
+
+https://learn.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest
